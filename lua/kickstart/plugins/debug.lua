@@ -27,28 +27,28 @@ return {
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<F5>',
+      '<Leader>dl',
       function()
         require('dap').continue()
       end,
       desc = 'Debug: Start/Continue',
     },
     {
-      '<F1>',
+      '<Leader>di',
       function()
         require('dap').step_into()
       end,
       desc = 'Debug: Step Into',
     },
     {
-      '<F2>',
+      '<Leader>do',
       function()
         require('dap').step_over()
       end,
       desc = 'Debug: Step Over',
     },
     {
-      '<F3>',
+      '<Leader>de',
       function()
         require('dap').step_out()
       end,
@@ -70,7 +70,7 @@ return {
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
-      '<F7>',
+      '<leader>du',
       function()
         require('dapui').toggle()
       end,
@@ -118,6 +118,38 @@ return {
           disconnect = '⏏',
         },
       },
+      layouts = {
+        {
+          elements = {
+            { id = 'repl', size = 0.25 },
+            { id = 'breakpoints', size = 0.25 },
+            { id = 'stacks', size = 0.25 },
+            { id = 'watches', size = 0.25 },
+          },
+          position = 'left',
+          size = 40,
+        },
+        {
+          elements = {
+            { id = 'scopes', size = 1 },
+          },
+          position = 'bottom',
+          size = 10,
+        },
+      },
+      floating = {
+        max_height = 0.9,
+        max_width = 0.5,
+        border = vim.g.border_chars,
+        mappings = {
+          close = { 'q', '<Esc>' },
+        },
+      },
+      render = {
+        max_type_length = 100,
+        max_value_lines = 50,
+      },
+      expand_lines = false,
     }
 
     -- Change breakpoint icons
