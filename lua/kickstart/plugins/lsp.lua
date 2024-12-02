@@ -176,6 +176,24 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local tl_ls = function()
+        local mason_packages = vim.fn.stdpath 'data' .. '/mason/packages'
+        local volar_path = mason_packages .. '/vue-language-server/node_modules/@vue/language-server'
+
+        return {
+          init_options = {
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = volar_path,
+                languages = { 'vue' },
+              },
+            },
+          },
+          filetypes = { 'typescript', 'javascript', 'vue' },
+        }
+      end
+
       local servers = {
         -- clangd = {},
         gopls = {},
@@ -192,7 +210,15 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = tl_ls(),
+        volar = {
+          filetypes = { 'vue', 'typescript', 'javascript' },
+          init_options = {
+            vue = {
+              hybridMode = true,
+            },
+          },
+        },
         --
 
         lua_ls = {
