@@ -196,11 +196,14 @@ return {
 
       local servers = {
         -- clangd = {},
+        cssls = {},
+        css_variables = {},
+        cssmodules_ls = {},
         gopls = {},
         html = {},
         templ = {},
         tailwindcss = {
-          filetypes = { 'html', 'templ' },
+          filetypes = { 'html', 'templ', 'vue' },
         },
         -- pyright = {},
         -- rust_analyzer = {},
